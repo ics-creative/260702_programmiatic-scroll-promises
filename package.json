@@ -1,0 +1,16 @@
+{
+  "name": "260702_programmatic-scroll-promises",
+  "version": "1.0.0",
+  "description": "",
+  "license": "MIT",
+  "author": "ics-kitagawa",
+  "type": "module",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "fix": "biome check --write"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.13"
+  }
+}
