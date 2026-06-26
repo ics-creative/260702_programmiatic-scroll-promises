@@ -1,10 +1,10 @@
 main {
-  padding: 60px 40px;
+  padding: calc(100vh * 0.25) 40px;
 }
 
 .dashboard {
   display: grid;
-  gap: 72px;
+  gap: 64px;
 }
 
 .header {

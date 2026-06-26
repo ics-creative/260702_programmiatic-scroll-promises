@@ -39,13 +39,15 @@ const clearActiveTarget = () => {
 const endTour = async () => {
   clearActiveTarget();
   tourPanel.close();
+  progressText.textContent = "";
+  messageText.textContent = "";
+
   await window.scrollTo({
     behavior: "smooth",
     top: 0,
   });
+  // スクロール後にボタンを活性化
   startButton.removeAttribute("disabled");
-  progressText.textContent = "";
-  messageText.textContent = "";
 };
 
 const showStep = async (stepIndex) => {
@@ -57,18 +59,27 @@ const showStep = async (stepIndex) => {
     tourPanel.show();
   }
 
-  await target.scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
-
-  target.classList.add(activeClass);
+  // panelの中身を更新
   currentStepIndex = stepIndex;
-
   progressText.textContent = `Step ${stepIndex + 1} of ${steps.length}`;
   messageText.textContent = step.message;
   backButton.disabled = stepIndex === 0;
   nextButton.textContent = stepIndex === steps.length - 1 ? "Finish" : "Next";
+
+  // targetを画面中央の位置を計算
+  const centerY =
+    target.offsetTop -
+    window.innerHeight / 2 +
+    target.getBoundingClientRect().height / 2;
+
+  // scrollIntoView()を使いたいが、2026/7/2 時点ではPromiseが即時解決されているようなのでscrollToで代替
+  await window.scrollTo({
+    behavior: "smooth",
+    top: centerY,
+  });
+
+  // スクロール後にactiveにする
+  target.classList.add(activeClass);
 };
 
 startButton.addEventListener("click", () => {
