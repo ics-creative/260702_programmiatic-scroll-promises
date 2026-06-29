@@ -90,18 +90,19 @@
       title.classList.add(highlightedClass);
     };
 
-    topicLinks.forEach((link) => {
-      link.addEventListener("click", async (event) => {
-        event.preventDefault();
-
-        const section = document.querySelector(link.hash);
-        await window.scrollTo({
-          top: section.offsetTop,
-          behavior: "smooth",
-        });
-        // スクロール後にハイライト
-        highlightTitle(section);
+    const onClick = async (event) => {
+      event.preventDefault();
+      const section = document.querySelector(link.hash);
+      await window.scrollTo({
+        top: section.offsetTop,
+        behavior: "smooth",
       });
+      // スクロール後にハイライト
+      highlightTitle(section);
+    };
+
+    topicLinks.forEach((link) => {
+      link.addEventListener("click", onClick);
     });
     </script>
   </body>
