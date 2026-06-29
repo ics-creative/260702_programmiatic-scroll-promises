@@ -79,34 +79,31 @@
     </main>
 
     <script>
-    const init = () => {
-      const topicLinks = document.querySelectorAll(".topic-link");
-      const highlightedClass = "is-highlighted";
+    const topicLinks = document.querySelectorAll(".topic-link");
+    const highlightedClass = "is-highlighted";
 
-      const highlightTitle = (section) => {
-        const currentTitle = document.querySelector(`.${highlightedClass}`);
-        currentTitle?.classList.remove(highlightedClass);
+    const highlightTitle = (section) => {
+      const currentTitle = document.querySelector(`.${highlightedClass}`);
+      currentTitle?.classList.remove(highlightedClass);
 
-        const title = section.querySelector(".section-title");
-        title.classList.add(highlightedClass);
-      };
-
-      const onClick = async (event) => {
-        event.preventDefault();
-        const section = document.querySelector(link.hash);
-        await window.scrollTo({
-          top: section.offsetTop,
-          behavior: "smooth",
-        });
-        // スクロール後にハイライト
-        highlightTitle(section);
-      };
-
-      topicLinks.forEach((link) => {
-        link.addEventListener("click", onClick);
-      });
+      const title = section.querySelector(".section-title");
+      title.classList.add(highlightedClass);
     };
-    document.addEventListener("DOMContentLoaded", init);
+
+    const onClick = async (event, link) => {
+      event.preventDefault();
+      const section = document.querySelector(link.hash);
+      await window.scrollTo({
+        top: section.offsetTop,
+        behavior: "smooth",
+      });
+      // スクロール後にハイライト
+      highlightTitle(section);
+    };
+
+    topicLinks.forEach((link) => {
+      link.addEventListener("click", (event) => onClick(event, link));
+    });
     </script>
   </body>
 </html>
