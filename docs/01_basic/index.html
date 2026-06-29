@@ -24,7 +24,7 @@
     const scrollButton = document.querySelector("#scrollButton");
     const target = document.querySelector("#section2");
 
-    scrollButton.addEventListener("click", async () => {
+    const onClick = async () => {
       // awaitでスクロールの完了を待つ
       await window.scrollTo({
         top: target.offsetTop,
@@ -32,7 +32,8 @@
       });
       // スクロールが完了したらalertを出す
       window.alert("scroll end!");
-    });
+    };
+    scrollButton.addEventListener("click", onClick);
     </script>
   </body>
 </html>

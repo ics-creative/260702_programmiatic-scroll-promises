@@ -6,7 +6,7 @@ const backButton = document.querySelector("#backButton");
 const nextButton = document.querySelector("#nextButton");
 const closeButton = document.querySelector("#closeButton");
 
-const activeClass = "is-active";
+// 現在のステップ
 let currentStepIndex = 0;
 
 const steps = [
@@ -33,7 +33,7 @@ const steps = [
 ];
 
 const clearActiveTarget = () => {
-  document.querySelector(`.${activeClass}`)?.classList.remove(activeClass);
+  document.querySelector(".is-active")?.classList.remove("is-active");
 };
 
 const endTour = async () => {
@@ -59,10 +59,11 @@ const showStep = async (stepIndex) => {
     tourPanel.show();
   }
 
-  // panelの中身を更新
   currentStepIndex = stepIndex;
+  // panelの中身を更新
   progressText.textContent = `Step ${stepIndex + 1} of ${steps.length}`;
   messageText.textContent = step.message;
+  // ボタンの状態を更新
   backButton.disabled = stepIndex === 0;
   nextButton.textContent = stepIndex === steps.length - 1 ? "Finish" : "Next";
 
@@ -72,14 +73,14 @@ const showStep = async (stepIndex) => {
     window.innerHeight / 2 +
     target.getBoundingClientRect().height / 2;
 
-  // scrollIntoView()を使いたいが、2026/7/2 時点ではPromiseが即時解決されているようなのでscrollToで代替
+  // scrollIntoView()を使いたいが、2026年7月時点ではPromiseが即時解決されているようなのでscrollToで代替
   await window.scrollTo({
     behavior: "smooth",
     top: centerY,
   });
 
   // スクロール後にactiveにする
-  target.classList.add(activeClass);
+  target.classList.add("is-active");
 };
 
 startButton.addEventListener("click", () => {
