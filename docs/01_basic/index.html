@@ -17,21 +17,24 @@
       </section>
       <section id="section2">
         <h1>Section 2</h1>
+        <p class="message" id="message"></p>
       </section>
     </main>
 
     <script>
     const scrollButton = document.querySelector("#scrollButton");
     const target = document.querySelector("#section2");
+    const message = document.querySelector("#message");
 
     const onClick = async () => {
+      message.textContent = "";
       // awaitでスクロールの完了を待つ
       await window.scrollTo({
         top: target.offsetTop,
         behavior: "smooth",
       });
-      // スクロールが完了したらalertを出す
-      window.alert("scroll end!");
+      // スクロールが完了したらメッセージを出す
+      message.textContent = "scroll end!";
     };
     scrollButton.addEventListener("click", onClick);
     </script>
