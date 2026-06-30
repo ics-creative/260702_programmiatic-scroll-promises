@@ -32,10 +32,26 @@ const steps = [
   },
 ];
 
+/**
+ * disabled属性をつけ外しする
+ * @param {HTMLElement} elm
+ * @param {boolean} disabled
+ */
+const toggleDisabled = (elm, disabled) =>
+  disabled
+    ? elm.setAttribute("disabled", true)
+    : elm.removeAttribute("disabled");
+
+/**
+ * アクティブ状態をクリアする
+ */
 const clearActiveTarget = () => {
   document.querySelector(".is-active")?.classList.remove("is-active");
 };
 
+/**
+ * ツアー終了時の処理
+ */
 const endTour = async () => {
   clearActiveTarget();
   tourPanel.close();
@@ -47,9 +63,13 @@ const endTour = async () => {
     top: 0,
   });
   // スクロール後にボタンを活性化
-  startButton.removeAttribute("disabled");
+  toggleDisabled(startButton, false);
 };
 
+/**
+ * ステップを表示する
+ * @param {number} stepIndex
+ */
 const showStep = async (stepIndex) => {
   const step = steps[stepIndex];
   const target = document.querySelector(step.selector);
@@ -64,7 +84,7 @@ const showStep = async (stepIndex) => {
   progressText.textContent = `Step ${stepIndex + 1} of ${steps.length}`;
   messageText.textContent = step.message;
   // ボタンの状態を更新
-  backButton.disabled = stepIndex === 0;
+  toggleDisabled(backButton, stepIndex === 0);
   nextButton.textContent = stepIndex === steps.length - 1 ? "Finish" : "Next";
 
   // targetを画面中央の位置を計算
@@ -84,7 +104,7 @@ const showStep = async (stepIndex) => {
 };
 
 startButton.addEventListener("click", () => {
-  startButton.setAttribute("disabled", true);
+  toggleDisabled(startButton, true);
   showStep(0);
 });
 
