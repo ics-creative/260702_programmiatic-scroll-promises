@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programmatic Scroll Promises - 03 Tour Interrupt</title>
+    <link rel="stylesheet" href="../base.css">
+    <link rel="stylesheet" href="../03_tour/style.css">
+  </head>
+  <body>
+    <main>
+      <p style="color: #ff0066; font-size: 24px; margin-bottom: 16px">
+        Interrupt Handling Version
+      </p>
+      <header class="header">
+        <h1>Dashboard</h1>
+        <button type="button" id="startTourButton" class="primary-button">
+          Start tour
+        </button>
+      </header>
+      <div class="dashboard">
+        <section id="search" class="panel search-panel" data-tour-target>
+          <div>
+            <p class="panel-label">Search</p>
+            <h2>Find reports</h2>
+          </div>
+          <label class="search-box">
+            <span>Keyword</span>
+            <input type="search" value="monthly sales">
+          </label>
+        </section>
+
+        <section id="sales" class="panel metric-panel" data-tour-target>
+          <p class="panel-label">Sales</p>
+          <h2>$42,800</h2>
+          <p>Up 12% from last month.</p>
+        </section>
+
+        <section id="chart" class="panel chart-panel" data-tour-target>
+          <div>
+            <p class="panel-label">Chart</p>
+            <h2>Revenue trend</h2>
+          </div>
+          <div class="bar-chart" aria-label="Revenue chart">
+            <span style="height: 40%"></span>
+            <span style="height: 65%"></span>
+            <span style="height: 52%"></span>
+            <span style="height: 82%"></span>
+            <span style="height: 74%"></span>
+          </div>
+        </section>
+
+        <section id="orders" class="panel order-panel" data-tour-target>
+          <p class="panel-label">Orders</p>
+          <h2>Recent orders</h2>
+          <ul class="order-list">
+            <li><span>Design kit</span><strong>$240</strong></li>
+            <li><span>Team plan</span><strong>$180</strong></li>
+            <li><span>Support pack</span><strong>$96</strong></li>
+          </ul>
+        </section>
+
+        <section id="settings" class="panel settings-panel" data-tour-target>
+          <div>
+            <p class="panel-label">Settings</p>
+            <h2>Report settings</h2>
+          </div>
+          <label class="switch-row">
+            <span>Email summary</span>
+            <input type="checkbox" checked>
+          </label>
+        </section>
+      </div>
+    </main>
+
+    <dialog id="tourPanel" class="tour-panel">
+      <button
+        type="button"
+        id="closeButton"
+        class="close-button"
+        aria-label="End tour"
+      >
+        <img src="../03_tour/images/icon-close.svg" alt="">
+      </button>
+      <p id="tourProgress" class="tour-progress"></p>
+      <p id="tourMessage" class="tour-message"></p>
+      <div class="tour-actions">
+        <button type="button" id="backButton" class="secondary-button">
+          Back
+        </button>
+        <button type="button" id="nextButton" class="primary-button">
+          Next
+        </button>
+      </div>
+    </dialog>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

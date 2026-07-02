@@ -3,6 +3,7 @@
 - [01 Basic](docs/01_basic/)
 - [02 Highlight](docs/02_highlight/)
 - [03 Tour](docs/03_tour/)
+- [03 Tour Interrupt](docs/03_tour-interrupt/)
 
 デモのアイコンは以下を使用しています。
 
