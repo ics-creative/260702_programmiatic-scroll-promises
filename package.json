@@ -4,8 +4,6 @@
   "description": "",
   "license": "MIT",
   "author": "ics-kitagawa",
-  "type": "module",
-  "main": "index.js",
   "private": true,
   "scripts": {
     "fix": "biome check --write"
